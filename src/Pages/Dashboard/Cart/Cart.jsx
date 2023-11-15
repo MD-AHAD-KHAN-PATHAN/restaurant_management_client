@@ -3,8 +3,10 @@ import useCart from "../../../Hooks/useCart";
 import CartTable from "./CartTable";
 
 const Cart = () => {
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
+
     const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+
     return (
         <div>
             <SectionTitle heading="My Cart" subHeading="wanna add more?"></SectionTitle>
@@ -29,7 +31,7 @@ const Cart = () => {
                             </thead>
                             <tbody>
                                 {
-                                    cart.map((item, idx) => <CartTable idx={idx} key={item._id} item={item}></CartTable>)
+                                    cart.map((item, idx) => <CartTable idx={idx} key={item._id} item={item} refetch={refetch}></CartTable>)
                                 }
                                 
                             </tbody>                           
