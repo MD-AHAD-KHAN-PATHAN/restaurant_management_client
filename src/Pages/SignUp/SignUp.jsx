@@ -4,34 +4,51 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
 
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
-    const {register, handleSubmit, reset, formState: { errors },} = useForm()
+    const { register, handleSubmit, reset, formState: { errors }, } = useForm()
 
     const onSubmit = (data) => {
         createUser(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            updateUserProfile(data.name, data.photo)
-            .then(() => {
-                reset();
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Your profile has been update successfully.",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                  
-                  navigate('/');
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                updateUserProfile(data.name, data.photo)
+                    .then(() => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+
+                                console.log('user added to the database');
+
+                                if (res.data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "Your profile has been update successfully.",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+
+                                    navigate('/');
+                                }
+                            })
+
+                    })
+                    .catch(error => console.log(error))
             })
-            .catch(error => console.log(error))
-        })
     }
 
     return (
@@ -80,6 +97,7 @@ const SignUp = () => {
                             </div>
                         </form>
                         <p className="text-center p-4"><small>Have an Account? <Link to='/login'>Login Now</Link></small></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
