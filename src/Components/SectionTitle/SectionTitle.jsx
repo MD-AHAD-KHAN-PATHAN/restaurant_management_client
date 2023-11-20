@@ -1,10 +1,13 @@
+import useMenu from "../../Hooks/useMenu";
 
 
 const SectionTitle = ({heading, subHeading}) => {
 
+    const [menu] = useMenu();
+    
     return (
 
-        <div className="text-center md:w-3/12 mx-auto my-10">
+        <div className="text-center md:w-4/12 mx-auto my-10">
             <p className="text-yellow-600 mb-2">--- {heading} ---</p>
             <h2 className="text-3xl uppercase border-y-4 py-4 font-semibold text-white">{subHeading}</h2>
         </div>
