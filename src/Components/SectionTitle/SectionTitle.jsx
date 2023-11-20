@@ -1,9 +1,6 @@
-import useMenu from "../../Hooks/useMenu";
 
 
 const SectionTitle = ({heading, subHeading}) => {
-
-    const [menu] = useMenu();
     
     return (
 
