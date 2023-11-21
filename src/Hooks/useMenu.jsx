@@ -15,6 +15,7 @@ const useMenu = () => {
     //         setLoading(false);
     //     })
     // },[])
+    
     const {data: menu = [], isPending: loading, refetch} = useQuery({
         queryKey: ['menu'],
         queryFn: async()=> {
