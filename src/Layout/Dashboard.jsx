@@ -17,12 +17,13 @@ const Dashboard = () => {
                             <li><NavLink to="/dashboard/adminHome"> <FaHome></FaHome>Admin Home</NavLink></li>
                             <li><NavLink to="/dashboard/addItems"> <FaUtensils></FaUtensils>Add Items</NavLink></li>
                             <li><NavLink to="/dashboard/cart"> <FaShoppingCart></FaShoppingCart>My Cart ({cart.length})</NavLink></li>
+                            <li><NavLink to="/dashboard/paymentHistory"> <FaCalendar></FaCalendar>Payment History</NavLink></li>
                             <li><NavLink to="/dashboard/manageItems"> <FaList></FaList> Manage Items</NavLink></li>
                             <li><NavLink to="/dashboard/manageBookings"> <FaBook></FaBook>Manage Bookings</NavLink></li>
                             <li><NavLink to="/dashboard/Users"> <FaUsers></FaUsers> All Users</NavLink></li>
                         </> : <>
                             <li><NavLink to="/dashboard/userHome"> <FaHome></FaHome>User Home</NavLink></li>
-                            <li><NavLink to="/dashboard/reservation"> <FaCalendar></FaCalendar>Reservation</NavLink></li>
+                            <li><NavLink to="/dashboard/paymentHistory"> <FaCalendar></FaCalendar>Payment History</NavLink></li>
                             <li><NavLink to="/dashboard/cart"> <FaShoppingCart></FaShoppingCart>My Cart ({cart.length})</NavLink></li>
                             <li><NavLink to="/dashboard/review"> <FaStar></FaStar>Add Review</NavLink></li>
                             <li><NavLink to="/dashboard/booking"> <FaBookmark></FaBookmark>My Booking</NavLink></li>
